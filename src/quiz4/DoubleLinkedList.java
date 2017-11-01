@@ -237,8 +237,39 @@ public class DoubleLinkedList<E> implements MyList<E> {
 	 *         search value, or -1 if the value is not found.
 	 */
 	public int find(E value, int position) {
-		// TODO: Implement me
-		return 0;
+		int returnValue = -1;
+		Node<E> current = this.head;
+		int index = 0;
+
+
+		if (position < 0 || position > this.currentSize)
+			throw new ListException("Invalid position given in get");
+		
+		//checks if find starts at 0
+		if(position == 0)
+		{
+			find(value);
+		}
+		
+		//goes up to position
+		while(index < position)
+		{
+			current = current.next;
+			index ++;
+		}
+		
+		//finds value
+		while(current!= null)
+		{
+			if (current.item.equals(value)) {
+				returnValue = index;
+				break;
+			}
+			current = current.next;
+			index++;
+		}
+		
+		return returnValue;
 	}
 
 	public void printForward() {
